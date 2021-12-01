@@ -6,3 +6,4 @@
 /kotlin/*/.gradle
 /kotlin/*/build
 /kotlin/*/.idea
+/src/main/resources/test5Lines.txt
