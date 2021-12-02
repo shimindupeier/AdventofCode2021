@@ -6,9 +6,8 @@ object AoCDay2Part2 {
         var aim = 0
 
         workingList.map {
-            val dir = it.first()
             val steps = it.last().toInt()
-            when (dir) {
+            when (it.first()) {
                 "forward" -> {horizontalCnt += steps
                                 depthCnt += steps.times(aim)}
                 "down" -> { aim += steps }
