@@ -6,5 +6,5 @@ fun main() {
 //    println(AoCDay1Part2.numDeptIncP2(list))
 
     val list2 = File("C:\\Users\\jasminedupre\\IdeaProjects\\AdventOfCode2021\\src\\main\\resources\\day2Input.txt").readLines().toList()
-    println(AoCDay2Part1.calFinalPosition(list2))
+    println(AoCDay2Part2.calFinalPosition(list2))
 }
