@@ -10,7 +10,6 @@ object AoCDay2Part1 {
                 "forward" -> horizontalCnt += steps
                 "down" -> depthCnt += steps
                 "up" -> depthCnt -= steps
-                else -> depthCnt += 0
             }
         }
         return horizontalCnt.times(depthCnt)

@@ -12,7 +12,6 @@ object AoCDay2Part2 {
                                 depthCnt += steps.times(aim)}
                 "down" -> { aim += steps }
                 "up" -> { aim -= steps}
-                else -> depthCnt += 0
             }
         }
         return horizontalCnt.times(depthCnt)
