@@ -1,5 +1,3 @@
-import kotlin.experimental.inv
-
 object AoCDay3Part1 {
     fun powerConsumption(data: List<String>): Int {
         val dataInput = data.map { it.split("(?<=\\d)(?=\\d)".toRegex()) }
