@@ -25,54 +25,46 @@ class HydrothermalVents {
 
             lineSegments.clear()
             if (x1 == x2 && y1 != y2) {
+                var yCoordinates = y1
                 if (y1 < y2) {
-                    var yCoordinates = y1
                     for (i in y1..y2) {
                         lineSegments.add(listOf(x1, yCoordinates++))
                     }
                 } else {
-                    var yCoordinates = y1
                     for (i in y1 downTo y2) {
                         lineSegments.add(listOf(x1, yCoordinates--))
                     }
                 }
             } else if (y1 == y2 && x1 != x2) {
+                var xCoordinates = x1
                 if (x1 < x2) {
-                    var xCoordinates = x1
                     for (i in x1..x2) {
                         lineSegments.add(listOf(xCoordinates++, y1))
                     }
                 } else {
-                    var xCoordinates = x1
                     for (i in x1 downTo x2) {
                         lineSegments.add(listOf(xCoordinates--, y1))
                     }
                 }
             } else { // diagonal
+                var xCoord = x1
+                var yCoord = y1
                 if (x1 < x2 && y1 < y2) {
-                    var xCoord = x1
-                    var yCoord = y1
                     val diagonalSteps = x2.minus(x1)
                     for (i in 0..diagonalSteps) {
                         lineSegments.add(listOf(xCoord++, yCoord++))
                     }
                 } else if (x1 > x2 && y1 > y2) {
-                    var xCoord = x1
-                    var yCoord = y1
                     val diagonalSteps = x1.minus(x2)
                     for (i in 0..diagonalSteps) {
                         lineSegments.add(listOf(xCoord--, yCoord--))
                     }
                 } else if (x1 > x2 && y1 < y2) {
-                    var xCoord = x1
-                    var yCoord = y1
                     val diagonalSteps = x1.minus(x2)
                     for (i in 0..diagonalSteps) {
                         lineSegments.add(listOf(xCoord--, yCoord++))
                     }
                 } else if (x1 < x2 && y1 > y2) {
-                    var xCoord = x1
-                    var yCoord = y1
                     val diagonalSteps = x2.minus(x1)
                     for (i in 0..diagonalSteps) {
                         lineSegments.add(listOf(xCoord++, yCoord--))
@@ -80,6 +72,6 @@ class HydrothermalVents {
                 }
             }
         }
-        lineSegments.filter { it.isNotEmpty() }
+//        lineSegments.filter { it.isNotEmpty() } this line for when travelling only horizontally and vertically
     }
 }
