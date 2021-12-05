@@ -1,9 +1,11 @@
 import java.io.File
 
 fun main() {
-    val bingo = BingoSubSystem()
-    //bingo.playBingo()
-    bingo.letSquidWin()
+    val hydrothermalVents = HydrothermalVents()
+hydrothermalVents.drawLines()
+//    val bingo = BingoSubSystem()
+//    bingo.playBingo()
+//    bingo.letSquidWin()
 //    val list3 = File("C:\\Users\\jasminedupre\\IdeaProjects\\AdventOfCode2021\\src\\main\\resources\\day3Input.txt").readLines().toList()
 //    println(AoCDay3Part1.powerConsumption(list3))
 //    println(AoCDay3Part2.calLifeSupportRating(list3))
