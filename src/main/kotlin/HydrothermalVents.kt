@@ -12,16 +12,10 @@ class HydrothermalVents {
         )
     }
 
-    init {
-//        drawLines()
-//        findOverlaps()
-    }
-
     fun findOverlaps() {
         val g = lineSegments.flatten().groupBy { it }
         val m = g.filter { it.value.size >= 2 }
-        println(g)
-        println(m.size)
+        println(m.size) // part 1 answer : 7085 ; part 2 answer 20271
     }
 
     fun drawLines() {
@@ -33,13 +27,11 @@ class HydrothermalVents {
             if (x1 == x2 && y1 != y2) {
                 if (y1 < y2) {
                     var yCoordinates = y1
-//                    lineSegments.add(listOf(x1, y1))
                     for (i in y1..y2) {
                         lineSegments.add(listOf(x1, yCoordinates++))
                     }
                 } else {
                     var yCoordinates = y1
-//                    lineSegments.add(listOf(x1, y1))
                     for (i in y1 downTo y2) {
                         lineSegments.add(listOf(x1, yCoordinates--))
                     }
@@ -47,20 +39,47 @@ class HydrothermalVents {
             } else if (y1 == y2 && x1 != x2) {
                 if (x1 < x2) {
                     var xCoordinates = x1
-//                    lineSegments.add(listOf(x1, y1))
                     for (i in x1..x2) {
                         lineSegments.add(listOf(xCoordinates++, y1))
                     }
                 } else {
                     var xCoordinates = x1
-//                    lineSegments.add(listOf(x1, y1))
                     for (i in x1 downTo x2) {
                         lineSegments.add(listOf(xCoordinates--, y1))
                     }
                 }
+            } else { // diagonal
+                if (x1 < x2 && y1 < y2) {
+                    var xCoord = x1
+                    var yCoord = y1
+                    val diagonalSteps = x2.minus(x1)
+                    for (i in 0..diagonalSteps) {
+                        lineSegments.add(listOf(xCoord++, yCoord++))
+                    }
+                } else if (x1 > x2 && y1 > y2) {
+                    var xCoord = x1
+                    var yCoord = y1
+                    val diagonalSteps = x1.minus(x2)
+                    for (i in 0..diagonalSteps) {
+                        lineSegments.add(listOf(xCoord--, yCoord--))
+                    }
+                } else if (x1 > x2 && y1 < y2) {
+                    var xCoord = x1
+                    var yCoord = y1
+                    val diagonalSteps = x1.minus(x2)
+                    for (i in 0..diagonalSteps) {
+                        lineSegments.add(listOf(xCoord--, yCoord++))
+                    }
+                } else if (x1 < x2 && y1 > y2) {
+                    var xCoord = x1
+                    var yCoord = y1
+                    val diagonalSteps = x2.minus(x1)
+                    for (i in 0..diagonalSteps) {
+                        lineSegments.add(listOf(xCoord++, yCoord--))
+                    }
+                }
             }
         }
-        val horVertLines = lineSegments.filter { it.isNotEmpty() }
-        println(horVertLines)
+        lineSegments.filter { it.isNotEmpty() }
     }
 }
