@@ -2,7 +2,7 @@ import java.io.File
 
 class HydrothermalVents {
     private val filename =
-        "C:\\Users\\jasminedupre\\IdeaProjects\\AdventOfCode2021\\src\\main\\resources\\day5TestSmallSample.txt"
+        "C:\\Users\\jasminedupre\\IdeaProjects\\AdventOfCode2021\\src\\main\\resources\\day5Input.txt"
     private val input = File(filename).bufferedReader().readLines()
         .map { it.split("[\\->]".toRegex()) }.map { listOf(it.first().trim(), it.last().trim()) }
     private val lineSegments = input.map {
@@ -13,7 +13,15 @@ class HydrothermalVents {
     }
 
     init {
-        println(lineSegments)
+//        drawLines()
+//        findOverlaps()
+    }
+
+    fun findOverlaps() {
+        val g = lineSegments.flatten().groupBy { it }
+        val m = g.filter { it.value.size >= 2 }
+        println(g)
+        println(m.size)
     }
 
     fun drawLines() {
@@ -22,27 +30,31 @@ class HydrothermalVents {
             val (x2, y2) = lineSegments.last()
 
             lineSegments.clear()
-            if (x1 == x2) {
+            if (x1 == x2 && y1 != y2) {
                 if (y1 < y2) {
                     var yCoordinates = y1
+//                    lineSegments.add(listOf(x1, y1))
                     for (i in y1..y2) {
                         lineSegments.add(listOf(x1, yCoordinates++))
                     }
                 } else {
-                    var yCoordinates = y2
-                    for (i in y2 downTo y1) {
+                    var yCoordinates = y1
+//                    lineSegments.add(listOf(x1, y1))
+                    for (i in y1 downTo y2) {
                         lineSegments.add(listOf(x1, yCoordinates--))
                     }
                 }
-            } else {
+            } else if (y1 == y2 && x1 != x2) {
                 if (x1 < x2) {
                     var xCoordinates = x1
+//                    lineSegments.add(listOf(x1, y1))
                     for (i in x1..x2) {
                         lineSegments.add(listOf(xCoordinates++, y1))
                     }
                 } else {
-                    var xCoordinates = x2
-                    for (i in x2 downTo x1) {
+                    var xCoordinates = x1
+//                    lineSegments.add(listOf(x1, y1))
+                    for (i in x1 downTo x2) {
                         lineSegments.add(listOf(xCoordinates--, y1))
                     }
                 }

@@ -3,6 +3,7 @@ import java.io.File
 fun main() {
     val hydrothermalVents = HydrothermalVents()
 hydrothermalVents.drawLines()
+    hydrothermalVents.findOverlaps()
 //    val bingo = BingoSubSystem()
 //    bingo.playBingo()
 //    bingo.letSquidWin()
