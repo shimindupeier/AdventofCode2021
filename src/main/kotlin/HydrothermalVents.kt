@@ -16,6 +16,7 @@ class HydrothermalVents {
         val g = lineSegments.flatten().groupBy { it }
         val m = g.filter { it.value.size >= 2 }
         println(m.size) // part 1 answer : 7085 ; part 2 answer 20271
+        println(g)
     }
 
     fun drawLines() {
