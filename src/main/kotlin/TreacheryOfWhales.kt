@@ -23,6 +23,7 @@ class TreacheryOfWhales {
         return n.times(n + 1).div(2)
     }
 
+    // gauss formula of 1+2+..n
     fun calculateFuelPart2() : Int {
         var steps = 0
         for (i in crabPositions) {
