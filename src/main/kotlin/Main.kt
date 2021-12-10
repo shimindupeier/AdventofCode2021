@@ -2,7 +2,7 @@ fun main() {
 // LANTERN2().main()
 
     val sevenSegmentSearch = SevenSegmentSearch()
-    sevenSegmentSearch.part1()
+    println(sevenSegmentSearch.part1())
 
 //    val treacheryOfWhales = TreacheryOfWhales()
 //    println(treacheryOfWhales.calculateFuelPart1())
