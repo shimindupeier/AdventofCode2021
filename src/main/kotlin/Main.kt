@@ -1,9 +1,12 @@
 fun main() {
 // LANTERN2().main()
 
-    val treacheryOfWhales = TreacheryOfWhales()
-    println(treacheryOfWhales.calculateFuelPart1())
-    println(treacheryOfWhales.calculateFuelPart2())
+    val sevenSegmentSearch = SevenSegmentSearch()
+    sevenSegmentSearch.part1()
+
+//    val treacheryOfWhales = TreacheryOfWhales()
+//    println(treacheryOfWhales.calculateFuelPart1())
+//    println(treacheryOfWhales.calculateFuelPart2())
 
 //    val lanternFishCounter = LanternFishCounter()
 //    lanternFishCounter.spawnFishes()
