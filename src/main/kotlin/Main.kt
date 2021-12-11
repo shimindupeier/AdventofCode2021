@@ -1,8 +1,11 @@
 fun main() {
 // LANTERN2().main()
 
-    val sevenSegmentSearch = SevenSegmentSearch()
-    println(sevenSegmentSearch.part1())
+    val dumboOctopus = DumboOctopus(10, 10)
+    println(dumboOctopus.countFlashes())
+
+//    val sevenSegmentSearch = SevenSegmentSearch()
+//    println(sevenSegmentSearch.part2())
 
 //    val treacheryOfWhales = TreacheryOfWhales()
 //    println(treacheryOfWhales.calculateFuelPart1())
