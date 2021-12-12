@@ -1,16 +1,35 @@
 import java.io.File
 
-class DumboOctopus(private val steps: Int, private val size: Int) {
+class DumboOctopus(private val size: Int) {
     private val filename =
         "C:\\Users\\jasminedupre\\IdeaProjects\\AdventOfCode2021\\src\\main\\resources\\day11TestSmallSample.txt"
     private var octopusesGrid: List<List<Int>> = File(filename).readLines()
         .map { str -> str.split("(?<=\\d)(?=\\d)".toRegex()).map { it.toInt() }.toList() }
 
-    fun countFlashes() : Int {
+    fun part1(steps: Int) : Int {
+        var octopusesGrid: List<List<Int>> = File(filename).readLines()
+            .map { str -> str.split("(?<=\\d)(?=\\d)".toRegex()).map { it.toInt() }.toList() }
         var totalFlashes = 0
+        for (step in 1..steps) {
+            val gridPlusOne =
+                (0 until size).map { r ->
+                    (0 until size).map { c -> octopusesGrid[r][c] + 1 }
+                }
+            printMatrix(octopusesGrid)
+            printMatrix(gridPlusOne)
+            val pair = stepB(gridPlusOne, 0)
+            totalFlashes += pair.first
+            octopusesGrid = pair.second
+            println(pair.first)
+        }
+        return totalFlashes
+    }
+
+    fun part2() : Int {
+        var octopusesGrid: List<List<Int>> = File(filename).readLines()
+            .map { str -> str.split("(?<=\\d)(?=\\d)".toRegex()).map { it.toInt() }.toList() }
         var steps = 0
         while (true) {
-//        for (step in 1..steps) {
             val gridPlusOne =
                 (0 until size).map { r ->
                     (0 until size).map { c -> octopusesGrid[r][c] + 1 }
@@ -19,7 +38,6 @@ class DumboOctopus(private val steps: Int, private val size: Int) {
             printMatrix(gridPlusOne)
             val pair = stepB(gridPlusOne, 0)
             steps = steps.inc()
-            totalFlashes += pair.first
             octopusesGrid = pair.second
             if (pair.second.flatten().all { it == 0 }) {
                 println("break $steps")
@@ -28,7 +46,6 @@ class DumboOctopus(private val steps: Int, private val size: Int) {
             println(pair.first)
         }
         return steps
-
     }
 
     private fun stepB(gridPlusOne: List<List<Int>>, flashes: Int): Pair<Int, List<List<Int>>> {

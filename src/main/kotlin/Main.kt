@@ -1,8 +1,9 @@
 fun main() {
 // LANTERN2().main()
 
-    val dumboOctopus = DumboOctopus(195, 10)
-    check(dumboOctopus.countFlashes() == 195)
+    val dumboOctopus = DumboOctopus(10)
+    check(dumboOctopus.part2() == 195)
+    check(dumboOctopus.part1(100) == 1656)
 
 //    val sevenSegmentSearch = SevenSegmentSearch()
 //    println(sevenSegmentSearch.part2())
