@@ -2,7 +2,7 @@ fun main() {
 // LANTERN2().main()
 
     val dumboOctopus = DumboOctopus(195, 10)
-    println(dumboOctopus.countFlashes())
+    check(dumboOctopus.countFlashes() == 195)
 
 //    val sevenSegmentSearch = SevenSegmentSearch()
 //    println(sevenSegmentSearch.part2())

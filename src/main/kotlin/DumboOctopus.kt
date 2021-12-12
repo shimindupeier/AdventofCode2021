@@ -6,7 +6,7 @@ class DumboOctopus(private val steps: Int, private val size: Int) {
     private var octopusesGrid: List<List<Int>> = File(filename).readLines()
         .map { str -> str.split("(?<=\\d)(?=\\d)".toRegex()).map { it.toInt() }.toList() }
 
-    fun countFlashes() {
+    fun countFlashes() : Int {
         var totalFlashes = 0
         var steps = 0
         while (true) {
@@ -27,7 +27,8 @@ class DumboOctopus(private val steps: Int, private val size: Int) {
             }
             println(pair.first)
         }
-        println(totalFlashes)
+        return steps
+
     }
 
     private fun stepB(gridPlusOne: List<List<Int>>, flashes: Int): Pair<Int, List<List<Int>>> {
