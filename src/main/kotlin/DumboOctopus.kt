@@ -3,58 +3,83 @@ import java.io.File
 class DumboOctopus(private val steps: Int, private val size: Int) {
     private val filename =
         "C:\\Users\\jasminedupre\\IdeaProjects\\AdventOfCode2021\\src\\main\\resources\\day11TestSmallSample.txt"
-    private val octopusesGrid = File(filename).readLines()
-        .map { str -> str.split("(?<=\\d)(?=\\d)".toRegex()).map { it.toInt() }.toIntArray() }
+    private var octopusesGrid: List<List<Int>> = File(filename).readLines()
+        .map { str -> str.split("(?<=\\d)(?=\\d)".toRegex()).map { it.toInt() }.toList() }
 
-    fun countFlashes(): Int {
-        var flashCount = 0
-        for (step in 1..steps) {
-            for (row in 0 until size) {
-                for (col in 0 until size) {
-                    octopusesGrid[row][col]++
-                    val counter = octopusesGrid[row][col]
-                    try {
-                        if (counter > 9) {
-                            flashCount++
-                            when {
-                                row == 0 && col == 0 -> octopusesGrid[row][col.inc()]++
-                                row == 0 -> {
-                                    octopusesGrid[row][col.dec()]++
-                                    if (col < size) octopusesGrid[row][col.inc()]++
-                                    (0 until 3).forEach {
-                                        octopusesGrid[row.inc()][col.dec().plus(it)]++
-                                    }
-                                }
-                                col == 0 -> {
-                                    octopusesGrid[row.dec()][col]++
-                                    if (row < size) octopusesGrid[row.inc()][col]++
-                                    (0 until 3).forEach {
-                                        octopusesGrid[row.dec().plus(it)][col.inc()]++
-                                    }
-                                }
-                                else -> {
-                                    (0 until 3).forEach {
-                                        if (col < size) {
-                                            octopusesGrid[row.dec()][col.dec().plus(it)]++
-                                        }
-                                    }
-                                    (0 until 3).forEach {
-                                        octopusesGrid[row.inc()][col.dec().plus(it)]++
-                                    }
-                                    octopusesGrid[row][col.dec()]++
-                                    octopusesGrid[row][col.inc()]++
-                                }
-                            }
-                            octopusesGrid[row][col] = 0
-                        }
-                    } catch (e: ArrayIndexOutOfBoundsException) {
-                        continue
-                    } catch (i: IndexOutOfBoundsException) {
-                        continue
-                    }
+    fun countFlashes() {
+        var totalFlashes = 0
+        var steps = 0
+        while (true) {
+//        for (step in 1..steps) {
+            val gridPlusOne =
+                (0 until size).map { r ->
+                    (0 until size).map { c -> octopusesGrid[r][c] + 1 }
+                }
+            printMatrix(octopusesGrid)
+            printMatrix(gridPlusOne)
+            val pair = stepB(gridPlusOne, 0)
+            steps = steps.inc()
+            totalFlashes += pair.first
+            octopusesGrid = pair.second
+            if (pair.second.flatten().all { it == 0 }) {
+                println("break $steps")
+                break
+            }
+            println(pair.first)
+        }
+        println(totalFlashes)
+    }
+
+    private fun stepB(gridPlusOne: List<List<Int>>, flashes: Int): Pair<Int, List<List<Int>>> {
+
+        val posToReset: List<Pair<Int, Int>> =
+            (0 until size).flatMap { r ->
+                (0 until size).map { c -> Pair(Pair(r, c), gridPlusOne[r][c]) }.filter { it.second > 9 }
+                    .map { it.first }
+            }
+
+        val updatedGrid: List<List<Int>> =
+            (0 until size).map { r ->
+                (0 until size).map { c ->
+                    val coord = (genCoord(r, c, size))
+                        .filter { gridPlusOne[it.first][it.second] > 9 }.size
+                    if (gridPlusOne[r][c] == 0) 0 else gridPlusOne[r][c] + coord
                 }
             }
+
+        printMatrix(updatedGrid)
+        val updatedGridReset: List<List<Int>> =
+            (0 until size).map { r ->
+                (0 until size).map { c -> if (posToReset.contains(Pair(r, c))) 0 else updatedGrid[r][c] }
+            }
+
+        printMatrix(updatedGridReset)
+        return if (shouldStop(updatedGridReset))
+            Pair(flashes + posToReset.size, updatedGridReset)
+        else {
+            stepB(updatedGridReset, flashes + posToReset.size)
         }
-        return flashCount
+    }
+
+    private fun shouldStop(grid: List<List<Int>>) = grid.flatten().all { it < 10 }
+
+    private fun genCoord(r: Int, c: Int, size: Int): List<Pair<Int, Int>> =
+        (-1..1).flatMap { x -> (-1..1).map { y -> Pair(x + r, y + c) } }
+            .filterNot { it == Pair(r, c) }
+            .filterNot { it.first < 0 || it.second < 0 }
+            .filterNot { it.first >= size || it.second >= size }
+
+    private fun printMatrix(grid: List<List<Int>>) {
+        for (row in grid) {
+            println(row.joinToString(" "))
+        }
+        println()
+    }
+
+    fun printIntArray(grid: List<IntArray>) {
+        for (row in grid) {
+            println(row.joinToString(" "))
+        }
+        println()
     }
 }

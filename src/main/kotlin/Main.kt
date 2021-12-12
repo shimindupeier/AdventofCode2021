@@ -1,7 +1,7 @@
 fun main() {
 // LANTERN2().main()
 
-    val dumboOctopus = DumboOctopus(10, 10)
+    val dumboOctopus = DumboOctopus(195, 10)
     println(dumboOctopus.countFlashes())
 
 //    val sevenSegmentSearch = SevenSegmentSearch()
