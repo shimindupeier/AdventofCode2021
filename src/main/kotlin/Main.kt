@@ -1,9 +1,12 @@
 fun main() {
 // LANTERN2().main()
 
-    val dumboOctopus = DumboOctopus(10)
-    check(dumboOctopus.part2() == 195)
-    check(dumboOctopus.part1(100) == 1656)
+    val passagePathing = PassagePathing()
+    //check(passagePathing.part1() == 36)
+    println(passagePathing.part1())
+//    val dumboOctopus = DumboOctopus(10)
+//    check(dumboOctopus.part2() == 195)
+//    check(dumboOctopus.part1(100) == 1656)
 
 //    val sevenSegmentSearch = SevenSegmentSearch()
 //    println(sevenSegmentSearch.part2())
