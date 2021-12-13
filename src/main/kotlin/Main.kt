@@ -1,9 +1,12 @@
 fun main() {
 // LANTERN2().main()
 
-    val passagePathing = PassagePathing()
+    val transparentOrigami = TransparentOrigami()
+   println(transparentOrigami.part2())
+
+//    val passagePathing = PassagePathing()
     //check(passagePathing.part1() == 36)
-    println(passagePathing.part1())
+//    println(passagePathing.part1())
 //    val dumboOctopus = DumboOctopus(10)
 //    check(dumboOctopus.part2() == 195)
 //    check(dumboOctopus.part1(100) == 1656)
