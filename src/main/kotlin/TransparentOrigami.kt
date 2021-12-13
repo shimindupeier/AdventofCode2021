@@ -44,7 +44,7 @@ class TransparentOrigami {
                 if (Pair(c, r) in coordinate)
                     print("#")
                 else
-                    print(".")
+                    print(" ")
             }
             println()
         }
