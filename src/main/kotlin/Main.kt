@@ -1,5 +1,7 @@
 fun main() {
 // LANTERN2().main()
+    val extendedPolymerisation = ExtendedPolymerisation()
+        extendedPolymerisation.part1()
 
 //    val transparentOrigami = TransparentOrigami()
 //   println(transparentOrigami.part2())
@@ -11,8 +13,8 @@ fun main() {
 //    check(dumboOctopus.part2() == 195)
 //    check(dumboOctopus.part1(100) == 1656)
 
-    val sevenSegmentSearch = SevenSegmentSearch()
-    println(sevenSegmentSearch.part2())
+//    val sevenSegmentSearch = SevenSegmentSearch()
+//    println(sevenSegmentSearch.part2())
 
 //    val treacheryOfWhales = TreacheryOfWhales()
 //    println(treacheryOfWhales.calculateFuelPart1())
