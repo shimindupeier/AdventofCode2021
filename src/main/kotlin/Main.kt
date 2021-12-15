@@ -1,8 +1,9 @@
 fun main() {
 // LANTERN2().main()
     val extendedPolymerisation = ExtendedPolymerisation()
-        extendedPolymerisation.part1()
-
+//    check(extendedPolymerisation.solvePart2() == 3776553567525)
+//    check(extendedPolymerisation.part1() == 1588L)
+check(extendedPolymerisation.part2(40) == 3776553567525)
 //    val transparentOrigami = TransparentOrigami()
 //   println(transparentOrigami.part2())
 
